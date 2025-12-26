@@ -47,6 +47,7 @@ function prepareOperation() {
             calculator.operator = operator.textContent;
             calculator.display = display.textContent;
             calculator.firstNum = +calculator.display;
+            display.textContent = '';
         });
     });
 }
