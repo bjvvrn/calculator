@@ -37,3 +37,10 @@ function appendToDisplay() {
         });
     });
 } 
+
+let calculator = {
+    display: '',
+    firstNum: null,
+    secondNum: null,
+    operator: null,
+}
