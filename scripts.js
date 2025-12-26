@@ -36,7 +36,20 @@ function appendToDisplay() {
             display.textContent += number.textContent;
         });
     });
-} 
+}
+
+function prepareOperation() {
+    const display = document.querySelector('#display');
+
+    const operators = document.querySelectorAll('.operator');
+    operators.forEach(operator => {
+        operator.addEventListener('click', () => {
+            calculator.operator = operator.textContent;
+            calculator.display = display.textContent;
+            calculator.firstNum = +calculator.display;
+        });
+    });
+}
 
 let calculator = {
     display: '',
