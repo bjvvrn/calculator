@@ -52,6 +52,23 @@ function prepareOperation() {
     });
 }
 
+function handleEquals() {
+    const display = document.querySelector('#display');
+
+    const equal = document.querySelector('#equal');
+    equal.addEventListener('click', () => {
+        calculator.display = display.textContent;
+        calculator.secondNum = +calculator.display;
+        calculator.firstNum = operate(
+            calculator.firstNum, 
+            calculator.secondNum, 
+            calculator.operator
+        );
+        calculator.display = calculator.firstNum.toString();
+        display.textContent = calculator.display;
+    });
+}
+
 let calculator = {
     display: '',
     firstNum: null,
