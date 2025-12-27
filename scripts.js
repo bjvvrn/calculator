@@ -33,7 +33,10 @@ function appendToDisplay() {
     const numbers = document.querySelectorAll('.num');
     numbers.forEach(number => {
         number.addEventListener('click', () => {
-            display.textContent += number.textContent;
+            if (!calculator.secondNum) {
+                calculator.display += number.textContent;
+                display.textContent = calculator.display;
+            }
         });
     });
 }
@@ -44,10 +47,24 @@ function prepareOperation() {
     const operators = document.querySelectorAll('.operator');
     operators.forEach(operator => {
         operator.addEventListener('click', () => {
-            calculator.operator = operator.textContent;
-            calculator.display = display.textContent;
-            calculator.firstNum = +calculator.display;
-            display.textContent = '';
+            if (calculator.operator) {
+                const operatorWaiter = operator.textContent;
+                calculator.secondNum = +display.textContent;
+                calculator.firstNum = operate(
+                    calculator.firstNum, 
+                    calculator.secondNum, 
+                    calculator.operator
+                );
+                calculator.operator = operatorWaiter;
+                display.textContent = calculator.firstNum.toString();
+                calculator.display = '';
+                calculator.secondNum = null;
+            } else {
+                calculator.operator = operator.textContent;
+                calculator.firstNum = +calculator.display;
+                display.textContent = '';
+                calculator.display = display.textContent;
+            }
         });
     });
 }
