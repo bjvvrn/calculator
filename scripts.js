@@ -86,6 +86,19 @@ function handleEquals() {
     });
 }
 
+function handleClear() {
+    const display = document.querySelector('#display');
+
+    const clearBtn = document.querySelector('#clear');
+    clearBtn.addEventListener('click', () => {
+        display.textContent = '';
+        calculator.display = '';
+        calculator.firstNum = null;
+        calculator.secondNum = null;
+        calculator.operator = null;
+    });
+}
+
 let calculator = {
     display: '',
     firstNum: null,
