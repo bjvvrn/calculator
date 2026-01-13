@@ -56,7 +56,9 @@ function prepareOperation() {
                     calculator.operator
                 );
                 calculator.operator = operatorWaiter;
-                display.textContent = calculator.firstNum.toString();
+                display.textContent = roundToDecimals(
+                    calculator.firstNum
+                ).toString();
                 calculator.display = '';
                 calculator.secondNum = null;
             } else {
@@ -81,7 +83,7 @@ function handleEquals() {
             calculator.secondNum, 
             calculator.operator
         );
-        calculator.display = calculator.firstNum.toString();
+        calculator.display = roundToDecimals(calculator.firstNum).toString();
         display.textContent = calculator.display;
     });
 }
@@ -97,6 +99,11 @@ function handleClear() {
         calculator.secondNum = null;
         calculator.operator = null;
     });
+}
+
+function roundToDecimals(num, decimals = 5) {
+    const factor = 10 ** decimals;
+    return Math.round(num * factor) / factor;
 }
 
 let calculator = {
